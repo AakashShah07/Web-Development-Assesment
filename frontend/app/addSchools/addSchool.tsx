@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 export default function AddSchool() {
   const {
@@ -25,9 +26,10 @@ export default function AddSchool() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [submitError, setSubmitError] = useState("");
+  const router = useRouter();
 
   const onSubmit = async (data: any) => {
-    console.log("Data is ",data)
+    console.log("Data is ", data);
     setLoading(true);
     setSuccess("");
     setSubmitError("");
@@ -68,7 +70,7 @@ export default function AddSchool() {
         state: data.state,
         contact: data.contact,
         email_id: data.email_id,
-        image:imagePath,
+        image: imagePath,
       };
 
       const schoolRes = await fetch("http://localhost:5000/api/schools", {
@@ -84,6 +86,10 @@ export default function AddSchool() {
 
       setSuccess("School added successfully!");
       reset();
+      // router.push("/showSchools");
+      setTimeout(() => {
+        router.push("/showSchools");
+      }, 2000);
     } catch (err: any) {
       setSubmitError(err?.message || "Something went wrong.");
     } finally {
@@ -114,7 +120,10 @@ export default function AddSchool() {
           <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
             {/* Name */}
             <div className="grid gap-1.5">
-              <label htmlFor="name" className="text-sm font-medium text-gray-700">
+              <label
+                htmlFor="name"
+                className="text-sm font-medium text-gray-700"
+              >
                 Name
               </label>
               <input
@@ -132,7 +141,10 @@ export default function AddSchool() {
 
             {/* Address */}
             <div className="grid gap-1.5">
-              <label htmlFor="address" className="text-sm font-medium text-gray-700">
+              <label
+                htmlFor="address"
+                className="text-sm font-medium text-gray-700"
+              >
                 Address
               </label>
               <input
@@ -150,7 +162,10 @@ export default function AddSchool() {
 
             {/* City */}
             <div className="grid gap-1.5">
-              <label htmlFor="city" className="text-sm font-medium text-gray-700">
+              <label
+                htmlFor="city"
+                className="text-sm font-medium text-gray-700"
+              >
                 City
               </label>
               <input
@@ -168,7 +183,10 @@ export default function AddSchool() {
 
             {/* State */}
             <div className="grid gap-1.5">
-              <label htmlFor="state" className="text-sm font-medium text-gray-700">
+              <label
+                htmlFor="state"
+                className="text-sm font-medium text-gray-700"
+              >
                 State
               </label>
               <input
@@ -186,7 +204,10 @@ export default function AddSchool() {
 
             {/* Contact */}
             <div className="grid gap-1.5">
-              <label htmlFor="contact" className="text-sm font-medium text-gray-700">
+              <label
+                htmlFor="contact"
+                className="text-sm font-medium text-gray-700"
+              >
                 Contact Number
               </label>
               <input
@@ -210,7 +231,10 @@ export default function AddSchool() {
 
             {/* Email */}
             <div className="grid gap-1.5">
-              <label htmlFor="email_id" className="text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email_id"
+                className="text-sm font-medium text-gray-700"
+              >
                 Email
               </label>
               <input
@@ -228,13 +252,18 @@ export default function AddSchool() {
                 className="w-full rounded-md border border-gray-300 p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               {errors.email_id && (
-                <p className="text-sm text-red-600">{errors.email_id.message}</p>
+                <p className="text-sm text-red-600">
+                  {errors.email_id.message}
+                </p>
               )}
             </div>
 
             {/* Image */}
             <div className="grid gap-1.5">
-              <label htmlFor="image" className="text-sm font-medium text-gray-700">
+              <label
+                htmlFor="image"
+                className="text-sm font-medium text-gray-700"
+              >
                 Image
               </label>
               <input
