@@ -1,3 +1,6 @@
+
+console.log("🚀 server.js loaded, starting Express app...");
+
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
