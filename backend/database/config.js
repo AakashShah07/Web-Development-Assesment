@@ -1,11 +1,13 @@
 const mysql = require('mysql2');
 require('dotenv').config();
 
+
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || 'alfa@1749',
-  database: process.env.DB_NAME || 'schooldb'
+  host: process.env.MYSQL_ADDON_HOST,
+  user: process.env.MYSQL_ADDON_USER,
+  password: process.env.MYSQL_ADDON_PASSWORD,
+  database: process.env.MYSQL_ADDON_DB,
+  port: process.env.MYSQL_ADDON_PORT
 });
 
 connection.connect((err) => {
