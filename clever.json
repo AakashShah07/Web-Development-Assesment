@@ -1,0 +1,8 @@
+{
+  "name": "web-development-assi-backend",
+  "root": "backend",
+  "deploy": {
+    "build": "npm install",
+    "start": "npm start"
+  }
+}
